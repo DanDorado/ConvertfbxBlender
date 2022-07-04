@@ -137,6 +137,11 @@ if (argv[1] == '1'):
 
 ######## Convert STL to SPL4 ##########
 
+#For a STL animation of N frames with M triangles, the SPL4 will contain M(N-1) prisms
+#The first frame will start with a waxis value of 0, then each frame will be incremented by wAxisInc
+# The Prisms are of the form:
+#Triangle1 Vertex1, Triangle1 Vertex2, Triangle1 Vertex3, Triangle2 Vertex1, Triangle2 Vertex2, Triangle2 Vertex3, 
+
 if (argv[2] == '1'):
     # For each subdirectory with stl frames, then for each frame create a new .spl4 object
     for subdir in os.listdir(stlDirectory):
