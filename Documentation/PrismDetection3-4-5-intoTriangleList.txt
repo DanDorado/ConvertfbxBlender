@@ -1,0 +1,430 @@
+Presuming the prism is composed of 6 vertices in theis order
+A - First frame ----A 
+B - First Frame -----B 
+C - First Frame -----C 
+A - Second Frame -----D  
+B - Second Frame -----E  
+C - Second Frame -----F 
+
+A,B,C,D,E,F are vertices containing x,y,z,w coordinates.
+
+We have a hyperplane to determine the intersection of these, which outputs the distance between the plane and the points.
+
+Ad,Bd,Cd,Dd,Ed,Fd        these are signed either positive or negative
+
+If Ad is Positive then Ab is a True bool, otherwise Ab is a False bool
+
+Ab,Bb,Cb,Db,Eb,Fb will be booleans in the same fashion.
+
+
+
+We will then lookup in a specific list to return a list of triangles/tetrahedrons formed by vertices sitting on the intersections of the edges of the prism with the hyperplane
+
+The vertices of the triangles/tetrahedrons will be calculated at the very end as a function of the distance from the hyperplane and the two verticies of the prism which bound the line.
+
+Such that [[[A,B][A,C][A,D]]] respresents the single triangle which results when Point A is on the opposite side of the hyperplane from every other point.
+
+The correct list of Triangles/Tetrahedrons to be rendered is retrieved from the list at position [Ab[Bb[Cb[Db[Eb[Fb]]]]]]
+
+This is that list (of 64 possibilities) 0-63
+
+The reality is that the list is mirrored, such that 'ABC' is the same result as 'DEF', or 'ABCDEF' is the same as ''
+
+So we can say that if we remove any element (e.g. F) from our list correct solution lies at:
+
+if !Fb then:
+    Ab=!Ab,
+    Bb=!Bb,
+    .....
+    Eb=!Eb
+
+And then only use a nested list of 5 
+
+[
+    [
+        [
+            [
+                [
+                    [
+                        [[DF,EF,CF]]
+                    ],
+                    [
+                        [[BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]]
+                    ]
+                ],
+                [
+                    [
+                        [[AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]]
+                    ],
+                    [
+                        [[AD,BE,CF]]
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        [[BC,EF,DF],[AC,EF,DF],[AC,BC,DF],[AC,BC,EF]]
+                    ],
+                    [
+                        [[BE,DE,DF],[BC,DE,DF],[BC,BE,DF],[BC,BE,DE],[AC,DE,DF],[AC,BE,DF],[AC,BE,DE],[AC,BC,DF],[AC,BC,DE],[AC,BC,BE]]
+                    ]
+                ],
+                [
+                    [
+                        [[AD,DE,EF],[AC,DE,EF],[AC,AD,EF],[AC,AD,DE],[BC,DE,EF],[BC,AD,EF],[BC,AD,DE],[BC,AC,EF],[BC,AC,DE],[BC,AC,AD]]
+                    ],
+                    [
+                        [[AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE]]
+                    ]
+                ]
+            ]
+        ],
+        [
+            [
+                [
+                    [
+                        [[BC,AB,BE],[DF,EF,CF]]
+                    ],
+                    [
+                        [[CF,DF,DE],[BC,DF,DE],[BC,CF,DE],[BC,CF,DF],[AB,DF,DE],[AB,CF,DE],[AB,CF,DF],[AB,BC,DE],[AB,BC,DF],[AB,BC,CF]]
+                    ]
+                ],
+                [
+                    [
+                        [[BC,AB,BE],[AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF],[DE,EF,BE],[AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]]
+                    ],
+                    [
+                        [[AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF]]
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        [[BE,EF,DF],[AB,EF,DF],[AB,BE,DF],[AB,BE,EF],[AC,EF,DF],[AC,BE,DF],[AC,BE,EF],[AC,AB,DF],[AC,AB,EF],[AC,AB,BE]]
+                    ],
+                    [
+                        [[AC,DF,DE],[AB,DF,DE],[AB,AC,DE],[AB,AC,DF]]
+                    ]
+                ],
+                [
+                    [
+                        [[AB,AC,AD],[DE,EF,BE]]
+                    ],
+                    [
+                        [[AB,AC,AD]]
+                    ]
+                ]
+            ]
+        ]
+    ],
+    [
+        [
+            [
+                [
+                    [
+                        [[AB,AC,AD],[DF,EF,CF]]
+                    ],
+                    [
+                        [[AB,AC,AD],[BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF],[DE,DF,AD],[BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]]
+                    ]
+                ],
+                [
+                    [
+                        [[CF,EF,DE],[AC,EF,DE],[AC,CF,DE],[AC,CF,EF],[AB,EF,DE],[AB,CF,DE],[AB,CF,EF],[AB,AC,DE],[AB,AC,EF],[AB,AC,CF]]
+                    ],
+                    [
+                        [[BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF]]
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        [[AD,DF,EF],[BA,DF,EF],[BA,AD,EF],[BA,AD,DF],[BC,DF,EF],[BC,AD,EF],[BC,AD,DF],[BC,BA,EF],[BC,BA,DF],[BC,BA,AD]]
+                    ],
+                    [
+                        [[BC,AB,BE],[DE,DF,AD]]
+                    ]
+                ],
+                [
+                    [
+                        [[BA,DE,EF],[BC,DE,EF],[BC,BA,EF],[BC,BA,DE]]
+                    ],
+                    [
+                        [[BC,AB,BE]]
+                    ]
+                ]
+            ]
+        ],
+        [
+            [
+                [
+                    [
+                        [[AC,BC,CF],[AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE],[DF,EF,CF],[EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]]
+                    ],
+                    [
+                        [[AC,BC,CF],[DE,DF,AD]]
+                    ]
+                ],
+                [
+                    [
+                        [[AC,BC,CF],[DE,EF,BE]]
+                    ],
+                    [
+                        [[AC,BC,CF]]
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        [[EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]]
+                    ],
+                    [
+                        [[DE,DF,AD]]
+                    ]
+                ],
+                [
+                    [
+                        [[DE,EF,BE]]
+                    ],
+                    [
+                        []
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+
+
+
+0 above
+
+0:1                     1
+
+[32] = NULL
+
+1 above
+
+1:1                     6   7
+
+A
+[16]    =   [AB,AC,AD]
+B
+[24]    =   [BC,AB,BE]
+C
+[28]    =   [AC,BC,CF]
+D
+[30]    =   [DE,DF,AD]
+E
+[31]    =   [DE,EF,BE]
+F
+[1]     =   [DF,EF,CF]
+
+2 Above
+
+2:1                     6   13
+
+AB
+[8]     =   [AC,AD,BE,BC]
+BC
+[20]    =   [AB,BE,CF,AC]
+AC
+[12]    =   [AB,AD,CF,CB]
+DE
+[29]    =   [DF,EF,AD,BE]
+EF
+[2]     =   [DE,BE,CF,DF]
+DF
+[3]     =   [DE,AD,CF,EF]
+
+2:2                     3   16
+
+AD
+[14]    =   [AB,AC,DF,DE]
+BE
+[23]    =   [BC,BA,DE,EF]
+CF
+[5]     =   [AC,BC,EF,DF]
+
+2:3                     6   22
+
+AE
+[15]    =   [AB,AC,AD],[DE,EF,BE]
+AF
+[17]    =   [AB,AC,AD],[DF,EF,CF]
+BF
+[9]     =   [BC,AB,BE],[DF,EF,CF]
+BD
+[22]    =   [BC,AB,BE],[DE,DF,AD]
+CD 
+[26]    =   [AC,BC,CF],[DE,DF,AD]
+CE 
+[27]    =   [AC,BC,CF],[DE,EF,BE]
+
+3
+
+N.B This class is self-reflecting so we will exclude a reflected class by only including the class which contains a majority of A/B/C vertices:
+e.g. ABC = DEF but we will only show ABC & ACE = BDF but we will only show ACE
+
+3:1                     1   23
+
+ABC
+[4]     =   [AD,BE,CF]
+
+3:2                     3   26
+
+NB - THESE BEHAVE WEIRDLY (Consider their real shapes) This is due to the shape being weirdly defined.
+There are always 7 distinct edges, but the best definition for them changes based off a certain setup.
+We could define these always the same way, but a better approximation of what makes sense is
+
+1. We could Split the shape into a quadralateral and a triangle based either arbitrarily or some other way.
+2. We could define some 7 vertex shape
+
+What I will do here as an attempt to make it accurate it to pass two triangles and two tetrahedrons representing each understanding of the shape.
+
+
+ABF
+[25]    =   [AC,BC,CF],[AC,AD,BE,BC],[DF,EF,CF],[DF,EF,AD,BE]
+ACE
+[11]    =   [BC,AB,BE],[AB,AD,CF,CB],[DE,EF,BE],[DE,AD,CF,EF]
+BCD
+[18]    =   [AB,AC,AD],[AB,BE,CF,AC],[DE,DF,AD],[DE,BE,CF,DF]
+
+3:3                     6   32
+
+ABD
+[6]     =   [AC,BC,BE,DE,DF]
+ABE
+[7]     =   [BC,AC,AD,DE,EF]
+ACD
+[10]    =   [AB,BC,CF,DF,DE]
+ACF 
+[21]    =   [BC,BA,AD,DF,EF]
+BCE
+[18]    =   [AB,AC,CF,EF,DE]
+BCF
+[13]    =   [AC,AB,BE,EF,DF]
+
+
+
+
+
+CONVERTING MANUALLY INTO EXPLICIT LISTS OF TRIANGLES 
+
+
+
+
+0 above
+
+0:1                     1
+
+[32] = NULL
+
+1 above
+
+1:1                     6   7
+
+A
+[16]    =   [AB,AC,AD]
+B
+[24]    =   [BC,AB,BE]
+C
+[28]    =   [AC,BC,CF]
+D
+[30]    =   [DE,DF,AD]
+E
+[31]    =   [DE,EF,BE]
+F
+[1]     =   [DF,EF,CF]
+
+2 Above
+
+2:1                     6   13
+
+AB
+[8]     =   [AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE]
+BC
+[20]    =   [BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF]
+AC
+[12]    =   [AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF]
+DE
+[29]    =   [EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]
+EF
+[2]     =   [BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]
+DF
+[3]     =   [AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]
+
+2:2                     3   16
+
+AD
+[14]    =   [AC,DF,DE],[AB,DF,DE],[AB,AC,DE],[AB,AC,DF]
+BE
+[23]    =   [BA,DE,EF],[BC,DE,EF],[BC,BA,EF],[BC,BA,DE]
+CF
+[5]     =   [BC,EF,DF],[AC,EF,DF],[AC,BC,DF],[AC,BC,EF]
+
+2:3                     6   22
+
+AE
+[15]    =   [AB,AC,AD],[DE,EF,BE]
+AF
+[17]    =   [AB,AC,AD],[DF,EF,CF]
+BF
+[9]     =   [BC,AB,BE],[DF,EF,CF]
+BD
+[22]    =   [BC,AB,BE],[DE,DF,AD]
+CD 
+[26]    =   [AC,BC,CF],[DE,DF,AD]
+CE 
+[27]    =   [AC,BC,CF],[DE,EF,BE]
+
+3
+
+N.B This class is self-reflecting so we will exclude a reflected class by only including the class which contains a majority of A/B/C vertices:
+e.g. ABC = DEF but we will only show ABC & ACE = BDF but we will only show ACE
+
+3:1                     1   23
+
+ABC
+[4]     =   [AD,BE,CF]
+
+3:2                     3   26
+
+NB - THESE BEHAVE WEIRDLY (Consider their real shapes) This is due to the shape being weirdly defined.
+There are always 7 distinct edges, but the best definition for them changes based off a certain setup.
+We could define these always the same way, but a better approximation of what makes sense is
+
+1. We could Split the shape into a quadralateral and a triangle based either arbitrarily or some other way.
+2. We could define some 7 vertex shape
+
+What I will do here as an attempt to make it accurate it to pass two triangles and two tetrahedrons representing each understanding of the shape.
+
+
+ABF
+[25]    =   [AC,BC,CF],[AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE],[DF,EF,CF],[EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]
+
+ACE
+[11]    =   [BC,AB,BE],[AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF],[DE,EF,BE],[AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]
+
+BCD
+[18]    =   [AB,AC,AD],[BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF],[DE,DF,AD],[BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]
+
+3:3                     6   32
+
+ABD
+[6]     =   [BE,DE,DF],[BC,DE,DF],[BC,BE,DF],[BC,BE,DE],[AC,DE,DF],[AC,BE,DF],[AC,BE,DE],[AC,BC,DF],[AC,BC,DE],[AC,BC,BE]
+ABE
+[7]     =   [AD,DE,EF],[AC,DE,EF],[AC,AD,EF],[AC,AD,DE],[BC,DE,EF],[BC,AD,EF],[BC,AD,DE],[BC,AC,EF],[BC,AC,DE],[BC,AC,AD]
+ACD
+[10]    =   [CF,DF,DE],[BC,DF,DE],[BC,CF,DE],[BC,CF,DF],[AB,DF,DE],[AB,CF,DE],[AB,CF,DF],[AB,BC,DE],[AB,BC,DF],[AB,BC,CF]
+ACF 
+[21]    =   [AD,DF,EF],[BA,DF,EF],[BA,AD,EF],[BA,AD,DF],[BC,DF,EF],[BC,AD,EF],[BC,AD,DF],[BC,BA,EF],[BC,BA,DF],[BC,BA,AD]
+BCE
+[18]    =   [CF,EF,DE],[AC,EF,DE],[AC,CF,DE],[AC,CF,EF],[AB,EF,DE],[AB,CF,DE],[AB,CF,EF],[AB,AC,DE],[AB,AC,EF],[AB,AC,CF]
+BCF
+[13]    =   [BE,EF,DF],[AB,EF,DF],[AB,BE,DF],[AB,BE,EF],[AC,EF,DF],[AC,BE,DF],[AC,BE,EF],[AC,AB,DF],[AC,AB,EF],[AC,AB,BE]

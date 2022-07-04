@@ -1,0 +1,105 @@
+[32] = NULL
+
+1 above
+
+1:1                     6   7
+
+A
+[16]    =   [AB,AC,AD]
+B
+[24]    =   [BC,AB,BE]
+C
+[28]    =   [AC,BC,CF]
+D
+[30]    =   [DE,DF,AD]
+E
+[31]    =   [DE,EF,BE]
+F
+[1]     =   [DF,EF,CF]
+
+2 Above
+
+2:1                     6   13
+
+AB
+[8]     =   [AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE]
+BC
+[20]    =   [BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF]
+AC
+[12]    =   [AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF]
+DE
+[29]    =   [EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]
+EF
+[2]     =   [BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]
+DF
+[3]     =   [AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]
+
+2:2                     3   16
+
+AD
+[14]    =   [AC,DF,DE],[AB,DF,DE],[AB,AC,DE],[AB,AC,DF]
+BE
+[23]    =   [BA,DE,EF],[BC,DE,EF],[BC,BA,EF],[BC,BA,DE]
+CF
+[5]     =   [BC,EF,DF],[AC,EF,DF],[AC,BC,DF],[AC,BC,EF]
+
+2:3                     6   22
+
+AE
+[15]    =   [AB,AC,AD],[DE,EF,BE]
+AF
+[17]    =   [AB,AC,AD],[DF,EF,CF]
+BF
+[9]     =   [BC,AB,BE],[DF,EF,CF]
+BD
+[22]    =   [BC,AB,BE],[DE,DF,AD]
+CD 
+[26]    =   [AC,BC,CF],[DE,DF,AD]
+CE 
+[27]    =   [AC,BC,CF],[DE,EF,BE]
+
+3
+
+N.B This class is self-reflecting so we will exclude a reflected class by only including the class which contains a majority of A/B/C vertices:
+e.g. ABC = DEF but we will only show ABC & ACE = BDF but we will only show ACE
+
+3:1                     1   23
+
+ABC
+[4]     =   [AD,BE,CF]
+
+3:2                     3   26
+
+NB - THESE BEHAVE WEIRDLY (Consider their real shapes) This is due to the shape being weirdly defined.
+There are always 7 distinct edges, but the best definition for them changes based off a certain setup.
+We could define these always the same way, but a better approximation of what makes sense is
+
+1. We could Split the shape into a quadralateral and a triangle based either arbitrarily or some other way.
+2. We could define some 7 vertex shape
+
+What I will do here as an attempt to make it accurate it to pass two triangles and two tetrahedrons representing each understanding of the shape.
+
+
+ABF
+[25]    =   [AC,BC,CF],[AD,BE,BC],[AC,BE,BC],[AC,AD,BC],[AC,AD,BE],[DF,EF,CF],[EF,AD,BE],[DF,AD,BE],[DF,EF,BE],[DF,EF,AD]
+
+ACE
+[11]    =   [BC,AB,BE],[AD,CF,CB],[AB,CF,CB],[AB,AD,CB],[AB,AD,CF],[DE,EF,BE],[AD,CF,EF],[DE,CF,EF],[DE,AD,EF],[DE,AD,CF]
+
+BCD
+[18]    =   [AB,AC,AD],[BE,CF,AC],[AB,CF,AC],[AB,BE,AC],[AB,BE,CF],[DE,DF,AD],[BE,CF,DF],[DE,CF,DF],[DE,BE,DF],[DE,BE,CF]
+
+3:3                     6   32
+
+ABD
+[6]     =   [BE,DE,DF],[BC,DE,DF],[BC,BE,DF],[BC,BE,DE],[AC,DE,DF],[AC,BE,DF],[AC,BE,DE],[AC,BC,DF],[AC,BC,DE],[AC,BC,BE]
+ABE
+[7]     =   [AD,DE,EF],[AC,DE,EF],[AC,AD,EF],[AC,AD,DE],[BC,DE,EF],[BC,AD,EF],[BC,AD,DE],[BC,AC,EF],[BC,AC,DE],[BC,AC,AD]
+ACD
+[10]    =   [CF,DF,DE],[BC,DF,DE],[BC,CF,DE],[BC,CF,DF],[AB,DF,DE],[AB,CF,DE],[AB,CF,DF],[AB,BC,DE],[AB,BC,DF],[AB,BC,CF]
+ACF 
+[21]    =   [AD,DF,EF],[BA,DF,EF],[BA,AD,EF],[BA,AD,DF],[BC,DF,EF],[BC,AD,EF],[BC,AD,DF],[BC,BA,EF],[BC,BA,DF],[BC,BA,AD]
+BCE
+[19]    =   [CF,EF,DE],[AC,EF,DE],[AC,CF,DE],[AC,CF,EF],[AB,EF,DE],[AB,CF,DE],[AB,CF,EF],[AB,AC,DE],[AB,AC,EF],[AB,AC,CF]
+BCF
+[13]    =   [BE,EF,DF],[AB,EF,DF],[AB,BE,DF],[AB,BE,EF],[AC,EF,DF],[AC,BE,DF],[AC,BE,EF],[AC,AB,DF],[AC,AB,EF],[AC,AB,BE]
