@@ -1,7 +1,7 @@
 
 ## Command to make the file run ##
 #
-# generateaxes.py -- 1 1
+# python3 generateaxes.py -- 1 1
 #
 ## ARGV ##
 #ARGV[0] - Normalize the hyperplanes 1=YES 0=NO
