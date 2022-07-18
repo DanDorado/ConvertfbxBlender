@@ -26,7 +26,7 @@ stlDirectory = '/home/dandorado/blender/stlFrames'
 spl4Directory = '/home/dandorado/blender/spl4Objects'
 
 # default w-axis increment by frame
-wAxisInc = 0.1
+wAxisInc = 0.0001
 
 
 # Get the arguments and save as strings

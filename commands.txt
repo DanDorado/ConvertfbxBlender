@@ -1,0 +1,5 @@
+sudo '../../../mnt/c/Program Files/Blender Foundation/Blender 3.2/blender.exe'  -b -P importscript.py -- 1 1 1
+
+python3 generateaxes.py -- 1 1
+
+python3 rotatespacetime.py -- 1
