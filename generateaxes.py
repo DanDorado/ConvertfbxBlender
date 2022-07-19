@@ -181,6 +181,32 @@ if (argv[1] == '1'):
         #print(str(f'{Az*a+Bz*b+Cz*c+Dz*d:f}'))
         #print()
 
+        #Normalize each set of axes
+        oLength=(math.sqrt((a**2)+(b**2)+(c**2)+(d**2)))
+        a=a/oLength
+        b=b/oLength
+        c=c/oLength
+        d=d/oLength
+
+        xLength=(math.sqrt((Ax**2)+(Bx**2)+(Cx**2)+(Dx**2)))
+        Ax=Ax/xLength
+        Bx=Bx/xLength
+        Cx=Cx/xLength
+        Dx=Dx/xLength
+
+        yLength=(math.sqrt((Ay**2)+(By**2)+(Cy**2)+(Dy**2)))
+        Ay=Ay/yLength
+        By=By/yLength
+        Cy=Cy/yLength
+        Dy=Dy/yLength
+
+        zLength=(math.sqrt((Az**2)+(Bz**2)+(Cz**2)+(Dz**2)))
+        Az=Az/zLength
+        Bz=Bz/zLength
+        Cz=Cz/zLength
+        Dz=Dz/zLength
+
+        
 
         # Set the axes we need to save
         oPlane=[a,b,c,d]

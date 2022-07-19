@@ -21,7 +21,7 @@ spl4Directory = '/home/dandorado/blender/spl4Objects'
 finalSTLs = '/home/dandorado/blender/rotatedSTLs'
 
 singleConstant = 31000
-frames = 30
+frames = 300
 increment = 1.2
 
 # Get the arguments and save as strings
