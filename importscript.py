@@ -26,7 +26,7 @@ stlDirectory = '/home/dandorado/blender/stlFrames'
 spl4Directory = '/home/dandorado/blender/spl4Objects'
 
 # default w-axis increment by frame
-wAxisInc = 0.0001
+wAxisInc = 0.15
 
 
 # Get the arguments and save as strings
@@ -163,8 +163,7 @@ if (argv[2] == '1'):
                     spl4.write(stl1[i+1][:-1]+' '+str(depth*wAxisInc)+'\n')
                     spl4.write(stl1[i+2][:-1]+' '+str(depth*wAxisInc)+'\n')
                     spl4.write(stl1[i+3][:-1]+' '+str(depth*wAxisInc)+'\n')
-                    depth = depth+1
-                    spl4.write(stl2[i+1][:-1]+' '+str(depth*wAxisInc)+'\n')
-                    spl4.write(stl2[i+2][:-1]+' '+str(depth*wAxisInc)+'\n')
-                    spl4.write(stl2[i+3][:-1]+' '+str(depth*wAxisInc)+'\n')
-            
+                    spl4.write(stl2[i+1][:-1]+' '+str((depth+1)*wAxisInc)+'\n')
+                    spl4.write(stl2[i+2][:-1]+' '+str((depth+1)*wAxisInc)+'\n')
+                    spl4.write(stl2[i+3][:-1]+' '+str((depth+1)*wAxisInc)+'\n')
+            depth = (depth+1)

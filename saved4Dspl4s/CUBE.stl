@@ -1,0 +1,23 @@
+solid Exported from Blender-3.2.0
+
+
+facet normal
+outer loop
+vertex A
+vertex B
+vertex C
+endloop
+endfacet
+
+
+
+facet normal 0.518088 -0.670406 -0.531169
+outer loop
+vertex -0.992800 -2.487427 -0.001795
+vertex -1.018146 -2.460967 -0.059912
+vertex -0.945890 -2.428028 -0.031009
+endloop
+endfacet
+
+
+endsolid Exported from Blender-3.2.0
